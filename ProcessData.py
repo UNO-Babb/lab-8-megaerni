@@ -12,10 +12,8 @@ def main():
   outFile = open("StudentList.csv", 'w')
 
   #Process each line of the input file and output to the CSV file
-  studentIDList = []
-  majorYearList = []
-  lastNameList = []
-  firstNameList = []
+
+  allStudentInfo = []
 
 
 
@@ -23,16 +21,15 @@ def main():
   for line in inFile:
     data = line.split()
     lastName = data[1]
-    lastNameList.append(lastName)
+    allStudentInfo.append(lastName)
     firstName = data[0]
-    firstNameList.append(firstName)
+    allStudentInfo.append(firstName)
     studentID = makeID(data[0], data[1], data[3])
-    studentIDList.append(studentID)
+    allStudentInfo.append(studentID)
     studentmajoryear = majorYear(data[6], data[5])
-    majorYearList.append(studentmajoryear)
+    allStudentInfo.append(studentmajoryear)
   
 
-  allStudentInfo = lastNameList + firstNameList + studentIDList + majorYearList
   print(allStudentInfo)
 
 
