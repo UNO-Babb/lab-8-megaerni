@@ -14,26 +14,21 @@ def main():
   #Process each line of the input file and output to the CSV file
 
   allStudentInfo = []
+  allStudentInfo.append(["Last Name", "First Name", "Student ID", "Major & Year"])
 
-
-
-  line = inFile.readline()
   for line in inFile:
     data = line.split()
     lastName = data[1]
-    allStudentInfo.append(lastName)
     firstName = data[0]
-    allStudentInfo.append(firstName)
     studentID = makeID(data[0], data[1], data[3])
-    allStudentInfo.append(studentID)
     studentmajoryear = majorYear(data[6], data[5])
-    allStudentInfo.append(studentmajoryear)
-  
+    allStudentInfo.append([lastName, firstName, studentID, studentmajoryear])
 
   print(allStudentInfo)
+  
 
-
-
+  for row in allStudentInfo:
+    outFile.write(str(row)[1:-1] + "\n")
 
   #Close files in the end to save and ensure they are not damaged.
   inFile.close()
@@ -43,7 +38,7 @@ def main():
 def majorYear(major, year):
   abbrMajor = major[0:3]
   abbrYear = year[0:2]
-  combined = abbrMajor + abbrYear
+  combined = abbrMajor + "-" + abbrYear
   return combined 
 
 def makeID(firstname, lastname, id_num):
